@@ -13,6 +13,7 @@ function checkConfigTemplate(str){
 module.exports.getConfigArray = function getConfigArray(str){
     if(!str)  throw new Error(`Отсутсвуют данные для аргумента -c(--config)`);
     let configArray = str.split('-');
+    if(!configArray[configArray.length-1]) configArray.pop();
     try{
         configArray.forEach( el => checkConfigTemplate(el));
         return configArray;

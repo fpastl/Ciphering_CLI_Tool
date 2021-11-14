@@ -16,6 +16,6 @@ module.exports.dataRW = (inputFile, outputFile, cipherStream) => {
         inputStream.on('end', () => { outPlace.end('\n\n'); stdout.write('\nУспех!\n') });
     }
     process.on("exit", (err) => {
-        if (err.code == 'ENOENT') stderr.write(`\nОшибка: не удалось найти файл "${err.path}", который указан в аргументе -i(--input)\n`);
+        if (err.code == 'ENOENT') stderr.write(`\nОшибка: не удалось найти файл "${err.path}", который указан в аргумента -i(--input)\n`);
     })
 }
