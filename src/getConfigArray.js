@@ -1,6 +1,7 @@
 function checkConfigTemplate(str){
+    if(!str) throw new Error(`неверный фломат данных для аргумента -c(--config), возможно лтшний символ "-"`);
     const ciphersType = str[0].toUpperCase(),EncDec = str[1]; 
-    if(!['C','R','A'].includes(ciphersType)) throw new Error(`неверный флаг штфрования, должен быть C, R или A`);
+    if(!['C','R','A'].includes(ciphersType)) throw new Error(`неверный флаг шифрования, должен быть C, R или A`);
     if(ciphersType == 'A') {
         if(EncDec !== undefined)throw new Error(`у типа шифрования A не требуется указывать дополнительных параметров`);
     }
