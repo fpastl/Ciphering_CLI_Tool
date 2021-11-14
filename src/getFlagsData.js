@@ -3,7 +3,7 @@ module.exports.getFlagsData = (flags) => {
     const configFlags = ['-c', '--config'];
     const inputFlags = ['-i', '--input'];
     const outputFlags = ['-o', '--output'];
-    let config, input, output;
+    let config, input=false, output=false;
     let c = 0, i = 0, o = 0;
 
     flags.forEach((element, key) => {
@@ -14,20 +14,25 @@ module.exports.getFlagsData = (flags) => {
         }
         if (inputFlags.includes(element)) {
             if (++i > 1) throw new Error(`аргумента -i(--input) не должен встречаться больше одного раза`);
-            input = key;
+            input = flags[key + 1];
         }
         if (outputFlags.includes(element)) {
             if (++o > 1) throw new Error(`аргумента -o(--output) не должен встречаться больше одного раза`);
-            output = key;
+            output = flags[key + 1];
         }
     });
     if (!c) {
-        throw new Error(`не найден аргумента -c(--config) flag`);
+        throw new Error(`не найден аргумента -c(--config)`);
     }
-
+    if(!input && input!==false){
+        throw new Error(`не задано значение для аргумента -i(--input)`);
+    }
+     if(!output && output!==false){
+        throw new Error(`не задано значение для аргумента -o(--output)`);
+    }
     return {
         cipherTypes: getConfigArray(flags[config + 1]),
-        inputFile: flags[input + 1],
-        outputFile: flags[output + 1],
+        inputFile: input,
+        outputFile: output,
     }
 }

@@ -10,5 +10,5 @@ try{
     const cipherStream = new transformStream(doEncryption.bind(null,cipherTypes));
     dataRW(inputFile,outputFile,cipherStream); 
 }catch(err){
-    stderr.write(`Ошибка: ${err.message}`);
+    stderr.write(`\nОшибка: ${err.message}\n`);
 }
