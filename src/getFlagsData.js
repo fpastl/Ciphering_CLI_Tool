@@ -1,4 +1,5 @@
 const { getConfigArray } = require("./getConfigArray");
+const { repetitionsArg,notSetArgValue } = require("./errors");
 module.exports.getFlagsData = (flags) => {
     const configFlags = ['-c', '--config'];
     const inputFlags = ['-i', '--input'];
@@ -9,29 +10,32 @@ module.exports.getFlagsData = (flags) => {
     flags.forEach((element, key) => {
 
         if (configFlags.includes(element)) {
-            if (++c > 1) throw new Error(`аргумента -c(--config) не должен встречаться больше одного раза`);
-            config = key;
+            if (++c > 1) throw new repetitionsArg(`-c(--config)`);
+            config = flags[key + 1];
         }
         if (inputFlags.includes(element)) {
-            if (++i > 1) throw new Error(`аргумента -i(--input) не должен встречаться больше одного раза`);
+            if (++i > 1) throw new repetitionsArg(`-i(--input)`);
             input = flags[key + 1];
         }
         if (outputFlags.includes(element)) {
-            if (++o > 1) throw new Error(`аргумента -o(--output) не должен встречаться больше одного раза`);
+            if (++o > 1) throw new repetitionsArg(`-o(--output)`);
             output = flags[key + 1];
         }
     });
     if (!c) {
         throw new Error(`не найден аргумента -c(--config)`);
     }
+    if(!config){
+        throw new notSetArgValue(`-c(--config)`);
+    }
     if(!input && input!==false){
-        throw new Error(`не задано значение для аргумента -i(--input)`);
+        throw new notSetArgValue(`-i(--input)`);
     }
      if(!output && output!==false){
-        throw new Error(`не задано значение для аргумента -o(--output)`);
+        throw new notSetArgValue(`-o(--output)`);
     }
     return {
-        cipherTypes: getConfigArray(flags[config + 1]),
+        cipherTypes: getConfigArray(config),
         inputFile: input,
         outputFile: output,
     }
