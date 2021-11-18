@@ -1,24 +1,23 @@
-function checkConfigTemplate(str){
-    if(!str) throw new Error(`неверный фломат данных для аргумента -c(--config), возможно лтшний символ "-"`);
-    const ciphersType = str[0].toUpperCase(),EncDec = str[1]; 
-    if(!['C','R','A'].includes(ciphersType)) throw new Error(`неверный флаг шифрования, должен быть C, R или A`);
-    if(ciphersType == 'A') {
-        if(EncDec !== undefined)throw new Error(`у типа шифрования A не требуется указывать дополнительных параметров`);
+const { configExtraFlagError, configWrongEncDecError, configWrongAtbashError, configWrongCipherError, configEmptyCipherError } = require("./errorsConfig");
+const { notSetArgValue } = require("./errors");
+function checkConfigTemplate(str) {
+    if (!str) throw new configEmptyCipherError();
+    const ciphersType = str[0].toUpperCase(), EncDec = str[1];
+    if (!['C', 'R', 'A'].includes(ciphersType)) throw new configWrongCipherError();
+    if (ciphersType == 'A') {
+        if (EncDec !== undefined) throw new configWrongAtbashError();
     }
-    else{
-        if(EncDec!= 0 && EncDec!= 1)throw new Error(`для флагов шифрования C и Р должен быть флаг, равный 1 или 0, указывающего на "шифрованние" или "дешифрование"`);
-        if(str.length>2) throw new Error(`обнаружны лишние флаги в "${str}", должно быть - "${str.slice(0,2)}"`);
+    else {
+        if (EncDec != 0 && EncDec != 1) throw new configWrongEncDecError();
+        if (str.length > 2) throw new configExtraFlagError(str);
     }
 }
 
-module.exports.getConfigArray = function getConfigArray(str){
-    if(!str)  throw new Error(`Отсутсвуют данные для аргумента -c(--config)`);
+module.exports.getConfigArray = function getConfigArray(str) {
+    if (!str) throw new notSetArgValue(`-c(--config)`);
     let configArray = str.split('-');
-    if(!configArray[configArray.length-1]) configArray.pop();
-    try{
-        configArray.forEach( el => checkConfigTemplate(el));
-        return configArray;
-    }catch(err){
-        throw new Error(`Неверный формат аргумента -c(--config) : \n ${err.message}`);
-    }
+    if (!configArray[configArray.length - 1]) configArray.pop();
+    configArray.forEach(el => checkConfigTemplate(el));
+    return configArray;
 }
+module.exports.checkConfigTemplate = checkConfigTemplate;
