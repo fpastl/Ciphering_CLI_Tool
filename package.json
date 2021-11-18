@@ -4,17 +4,21 @@
   "description": "NodeJS 2021 Q4 task",
   "main": "ciphering.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test1": "jest --coverage"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fpastl/Ciphering_CLI_Tool.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "fpastl",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fpastl/Ciphering_CLI_Tool/issues"
   },
-  "homepage": "https://github.com/fpastl/Ciphering_CLI_Tool#readme"
+  "homepage": "https://github.com/fpastl/Ciphering_CLI_Tool#readme",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
 }
