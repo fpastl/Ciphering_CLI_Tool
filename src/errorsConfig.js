@@ -30,8 +30,6 @@ class configExtraFlagError extends configTemplateError {
     }
 };
 
-
-
 module.exports = {
     configEmptyCipherError: configEmptyCipherError,
     configExtraFlagError: configExtraFlagError,

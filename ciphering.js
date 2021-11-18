@@ -5,7 +5,8 @@ const {dataRW} = require("./src/dataRW");
 const {doEncryption} = require("./ciphers");
 
 try{
-    let {cipherTypes ,inputFile, outputFile} = getFlagsData();
+    const flags = process.argv.slice(2);
+    let {cipherTypes ,inputFile, outputFile} = getFlagsData(flags);
     const cipherStream = new transformStream(doEncryption.bind(null,cipherTypes));
     dataRW(inputFile,outputFile,cipherStream); 
 }catch(err){

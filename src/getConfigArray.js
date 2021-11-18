@@ -20,4 +20,3 @@ module.exports.getConfigArray = function getConfigArray(str) {
     configArray.forEach(el => checkConfigTemplate(el));
     return configArray;
 }
-module.exports.checkConfigTemplate = checkConfigTemplate;
