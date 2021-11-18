@@ -1,6 +1,8 @@
 const { getConfigArray } = require("./getConfigArray");
 const { repetitionsArg,notSetArgValue } = require("./errors");
-module.exports.getFlagsData = (flags) => {
+
+module.exports.getFlagsData = () => {
+    const flags = process.argv.slice(2);
     const configFlags = ['-c', '--config'];
     const inputFlags = ['-i', '--input'];
     const outputFlags = ['-o', '--output'];
