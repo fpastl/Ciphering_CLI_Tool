@@ -69,28 +69,3 @@ for(let i=0;i<errorsArray.length;i++){
     expect(t).toThrow(errorsArray[i]['expected']);
   });
 }
-
-/*
-test('empty value for getConfigArray', () => {
-    const t = () => {
-        getConfigArray("");
-      };
-    expect(t).toThrow(notSetArgValue);
-  });
-
-
-  test('wrong config template', () => {
-    const t = () => {
-        getConfigArray("a1-c1");
-      };
-    expect(t).toThrow('Неверный формат');
-  });
-
-
-
-test('empty value for checkConfigTemplate', () => {
-    const t = () => {
-        checkConfigTemplate("");
-      };
-    expect(t).toThrow(configEmptyCipherError);
-  });*/
