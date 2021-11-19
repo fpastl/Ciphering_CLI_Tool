@@ -10,8 +10,15 @@ class notSetArgValue extends Error{
         this.name = "notSetArgValueError";
     }
 }
+class notFoundArgCError extends Error{
+    constructor(argName){
+        super(`не найден аргумента -c(--config)`);
+        this.name = "notFoundArgError";
+    }
+}
 
 module.exports ={
     repetitionsArg: repetitionsArg,
     notSetArgValue : notSetArgValue,
+    notFoundArgCError: notFoundArgCError,
 }

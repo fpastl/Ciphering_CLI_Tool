@@ -1,5 +1,5 @@
 const { getConfigArray } = require("./getConfigArray");
-const { repetitionsArg,notSetArgValue } = require("./errors");
+const { repetitionsArg,notSetArgValue,notFoundArgCError } = require("./errors");
 
 module.exports.getFlagsData = (flags) => {
     const configFlags = ['-c', '--config'];
@@ -24,7 +24,7 @@ module.exports.getFlagsData = (flags) => {
         }
     });
     if (!c) {
-        throw new Error(`не найден аргумента -c(--config)`);
+        throw new notFoundArgCError();
     }
     if(!config){
         throw new notSetArgValue(`-c(--config)`);
