@@ -2,16 +2,16 @@ const { doEncryption } = require('../ciphers/index');
 
 let correctValuesArray = [
     {
-        received: [['a','a'], 'abc'],
-        expected: 'abc',
+        received: [['a','a','a'], 'abc'],
+        expected: 'zyx',
     },
     {
-        received: [['r1','r0'], 'abc'],
-        expected: 'abc',
+        received: [['r1','r1','r0'], 'abc'],
+        expected: 'ijk',
     },
     {
-        received: [['c1','c0'], 'abc'],
-        expected: 'abc',
+        received: [['c1','c0','c1'], 'abc'],
+        expected: 'bcd',
     },
 ];
 for (let i = 0; i < correctValuesArray.length; i++) {
