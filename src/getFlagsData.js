@@ -35,8 +35,9 @@ module.exports.getFlagsData = (flags) => {
      if(!output && output!==false){
         throw new notSetArgValue(`-o(--output)`);
     }
+    let cipherTypes = getConfigArray(config); 
     return {
-        cipherTypes: getConfigArray(config),
+        cipherTypes: cipherTypes,
         inputFile: input,
         outputFile: output,
     }

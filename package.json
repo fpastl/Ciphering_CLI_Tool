@@ -5,7 +5,7 @@
   "main": "ciphering.js",
   "scripts": {
     "test": "jest",
-    "test1": "jest --coverage"
+    "testWI": "jest --coverage --verbose"
   },
   "repository": {
     "type": "git",
