@@ -18,7 +18,7 @@ let correctValuesArray = [
 ];
 
 for(let i=0;i<correctValuesArray.length;i++){
-  test(`value "${correctValuesArray[i]['received']}" for getConfigArray`, () => {
+  test(`input: "${correctValuesArray[i]['received']}"; expected: ${correctValuesArray[i]['expected']}`, () => {
   expect(getConfigArray(correctValuesArray[i]['received'])).toEqual(correctValuesArray[i]['expected']);
 });
 }
@@ -62,7 +62,7 @@ let errorsArray = [
   },
 ];
 for(let i=0;i<errorsArray.length;i++){
-  test(errorsArray[i]['title'], () => {
+  test(`input: "${errorsArray[i]['received']}";expected: error ${errorsArray[i]['title']}`, () => {
     const t = () => {
         getConfigArray(errorsArray[i]['received']);
       };

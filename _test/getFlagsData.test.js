@@ -4,7 +4,7 @@ const fucnProcess = './src/getFlagsData'
 
 const correctValuestArray = [
   {
-    title: 'correct input values: ["-c","a-c1","-i","a.txt","-o","b.txt"]',
+    title: 'correct input values',
     received: ['-c', 'a-c1', '-i', 'a.txt', '-o', 'b.txt'],
     expected: {
       cipherTypes: ['a', 'c1'],
@@ -13,7 +13,7 @@ const correctValuestArray = [
     },
   },
   {
-    title: 'correct input values: ["-c","a-c1","-i","a.txt"] without -o',
+    title: 'correct input values without -o',
     received: ['-c', 'a-c1', '-i', 'a.txt'],
     expected: {
       cipherTypes: ['a', 'c1'],
@@ -23,7 +23,7 @@ const correctValuestArray = [
   },
 ]
 for (let i = 0; i < correctValuestArray.length; i++) {
-  test(correctValuestArray[i]['title'], () => {
+  test(`input: "${correctValuestArray[i]['received']}" - ${correctValuestArray[i]['title']}; expected: object with data`, () => {
     const t = getFlagsData(correctValuestArray[i]['received']);
     expect(t).toEqual(correctValuestArray[i]['expected']);
   });
@@ -67,7 +67,7 @@ const errorsArray = [
   },
 ];
 for (let i = 0; i < errorsArray.length; i++) {
-  test(errorsArray[i]['title'], () => {
+  test(`input: ${errorsArray[i]['received']}; expected: error ${errorsArray[i]['title']}`, () => {
 
     const t = () => {
       getFlagsData(errorsArray[i]['received']);

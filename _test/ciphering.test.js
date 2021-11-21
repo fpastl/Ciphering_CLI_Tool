@@ -1,5 +1,4 @@
 const { fork } = require('child_process');
-const { type } = require('os');
 
 const cipher = jest.fn(
     async (args) => {
